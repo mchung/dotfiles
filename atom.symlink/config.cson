@@ -1,4 +1,13 @@
 "*":
+<<<<<<< 14d6e7c8dc12556ee2aab81c81696ca8d662f2eb
+=======
+  editor:
+    showIndentGuide: true
+    fontFamily: "Menlo"
+    invisibles: {}
+    softWrapAtPreferredLineLength: true
+    fontSize: 15
+>>>>>>> Atom config updates
   core:
     disabledPackages: [
       "background-tips"
@@ -41,5 +50,11 @@
     ]
   tabs:
     usePreviewTabs: true
+<<<<<<< 14d6e7c8dc12556ee2aab81c81696ca8d662f2eb
   welcome:
     showOnStartup: false
+=======
+  "atom-beautify":
+    analytics: false
+    _analyticsUserId: "XXX"
+>>>>>>> Atom config updates
