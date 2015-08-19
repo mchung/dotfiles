@@ -39,5 +39,7 @@
       "text.git-commit"
       "text.html.basic"
     ]
+  tabs:
+    usePreviewTabs: true
   welcome:
     showOnStartup: false
