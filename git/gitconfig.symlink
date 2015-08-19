@@ -5,6 +5,9 @@
         protocol = https
 [alias]
         co = checkout
+        st = status
+        di = diff
+        dc = diff --cached # show staged changes
         promote = !$ZSH/bin/git-promote
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
