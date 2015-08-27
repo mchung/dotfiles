@@ -1,3 +1,6 @@
+termtype=`uname`
+echo "OS :: $termtype"
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
