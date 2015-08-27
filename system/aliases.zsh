@@ -8,3 +8,5 @@ then
   alias ll="gls -l --color"
   alias la='gls -A --color'
 fi
+
+alias apinfo="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I"
