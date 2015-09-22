@@ -1,4 +1,4 @@
-Pry.config.editor = "mate"
+Pry.config.editor = "atom"
 
 if defined?(PryByebug)
   Pry.commands.alias_command 'c', 'continue'
@@ -6,4 +6,3 @@ if defined?(PryByebug)
   Pry.commands.alias_command 'n', 'next'
   Pry.commands.alias_command 'f', 'finish'
 end
-
