@@ -4,6 +4,7 @@
 [hub]
         protocol = https
 [alias]
+        br = branch
         co = checkout
         st = status
         di = diff
@@ -13,7 +14,11 @@
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
         lg = log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
+        lgs = log --name-status
         pu = !"git fetch origin -v; git fetch upstream -v; git pull --rebase upstream master"
+        springclean =!"git remote prune origin && git gc --aggressive && git clean -dfx && git stash clear"
+        rm-deleted = ls-files --deleted | xargs git rm
 [color]
         diff = auto
         status = auto
