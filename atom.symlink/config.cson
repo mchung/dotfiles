@@ -2,12 +2,6 @@
   "atom-beautify":
     analytics: false
     _analyticsUserId: "XXX"
-  editor:
-    showIndentGuide: true
-    fontFamily: "Menlo"
-    invisibles: {}
-    softWrapAtPreferredLineLength: true
-    fontSize: 15
   core:
     disabledPackages: [
       "background-tips"
