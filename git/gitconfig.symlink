@@ -8,6 +8,7 @@
         co = checkout
         st = status
         di = diff
+        ci = commit
         dc = diff --cached # show staged changes
         promote = !$ZSH/bin/git-promote
         wtf     = !$ZSH/bin/git-wtf
