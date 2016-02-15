@@ -1,2 +1,2 @@
 if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
-rvm default
+rvm use 2.2.1
