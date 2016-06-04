@@ -1,7 +1,7 @@
 "*":
   "atom-beautify":
-    analytics: false
     _analyticsUserId: "XXX"
+    analytics: false
   core:
     disabledPackages: [
       "background-tips"
@@ -44,5 +44,6 @@
     ]
   tabs:
     usePreviewTabs: true
+  "tree-view": {}
   welcome:
     showOnStartup: false
