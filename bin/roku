@@ -1,0 +1,104 @@
+#!/usr/bin/env ruby
+
+require "io/console"
+require "socket"
+require "net/http"
+require "uri"
+require 'pp'
+require 'cgi'
+
+SSDP_ADDR = "239.255.255.250";
+SSDP_PORT = 1900;
+SSDP_ST = "roku:ecp";
+
+def build_headers(s)
+  # s = "HTTP/1.1 200 OK\r\nCache-Control: max-age=3600\r\nST: roku:ecp\r\nUSN: uuid:roku:ecp:4A6542033400\r\nExt: \r\nServer: Roku UPnP/1.0 MiniUPnPd/1.4\r\nLOCATION: http://192.168.1.66:8060/\r\n\r\n"
+
+  rows = s.chomp.each_line.map { |l| l.chomp.split(': ', 2) }
+  # rows = [["HTTP/1.1 200 OK"],
+  #            ["Cache-Control", "max-age=3600"],
+  #            ["ST", "roku:ecp"],
+  #            ["USN", "uuid:roku:ecp:4A6542033400"],
+  #            ["Ext", ""],
+  #            ["Server", "Roku UPnP/1.0 MiniUPnPd/1.4"],
+  #            ["LOCATION", "http://192.168.1.66:8060/"]]
+  kv_pairs = rows.select {|x| x.size == 2}
+  headers = Hash[kv_pairs]
+  # pp header
+  headers
+end
+
+def find_roku_url
+  ssdp_request = "M-SEARCH * HTTP/1.1\r\n" + \
+                  "HOST: #{SSDP_ADDR}:#{SSDP_PORT}\r\n" + \
+                  "MAN: \"ssdp:discover\"\r\n" + \
+                  "ST: #{SSDP_ST}\r\n" + "\r\n";
+  # print ssdp_request
+  s = UDPSocket.new
+  s.send(ssdp_request, 0, SSDP_ADDR, SSDP_PORT)
+  resp = s.recv(1000)
+  # print resp
+  url = build_headers(resp)["LOCATION"]
+  return url
+end
+
+# Reads keypresses from the user including 2 and 3 escape character sequences.
+def read_char
+  STDIN.echo = false
+  STDIN.raw!
+
+  input = STDIN.getc.chr
+  if input == "\e" then
+    input << STDIN.read_nonblock(3) rescue nil
+    input << STDIN.read_nonblock(2) rescue nil
+  end
+ensure
+  STDIN.echo = true
+  STDIN.cooked!
+
+  return input
+end
+
+def call(url, path, method = :post)
+  if method == :get
+    Net::HTTP.get_response(URI(url + path))
+  else
+    Net::HTTP.post_form(URI(url + path), {})
+  end
+end
+
+def press(command)
+  call(@url, "keypress/#{command}")
+end
+
+def send_to_roku(c)
+  case c
+  when "`";       puts "HOME";                press "Home"
+  when "\eb";     puts "OPTION-LEFT";         press "Rev"
+  when "\ef";     puts "OPTION-RIGHT";        press "Fwd"
+  when " ";       puts "SPACE";               press "Play"
+  when "\r";      puts "\n";                  press "Select"
+  when "\e[D";    puts "LEFT";                press "Left"
+  when "\e[C";    puts "RIGHT";               press "Right"
+  when "\e[B";    puts "DOWN";                press "Down"
+  when "\e[A";    puts "UP";                  press "Up"
+  when "\e";      puts "ESC";                 press "Back"
+  when "\u0012";  puts "REPLAY";              press "InstantReplay"
+  when "?";       puts "INFO";                press "Info"
+  when "\177";    puts "BACKSPACE";           press "Backspace"
+  when "/";       puts "SEARCH";              press "Search"
+  when "\u0003";  puts "CONTROL-C";           exit 0
+  when /^.$/;     print c;                    press "Lit_#{CGI.escape(c)}"
+  else            puts "OTHER: #{c.inspect}"
+  end
+end
+
+if ENV["TEST"]
+  headers = build_headers("HTTP/1.1 200 OK\r\nCache-Control: max-age=3600\r\nST: roku:ecp\r\nUSN: uuid:roku:ecp:4A6542033400\r\nExt: \r\nServer: Roku UPnP/1.0 MiniUPnPd/1.4\r\nLOCATION: http://192.168.1.66:8060/\r\n\r\n")
+  pp [:location, headers["LOCATION"]]
+  exit
+end
+
+@url = find_roku_url
+pp "Starting on #{@url}"
+loop do send_to_roku(read_char) end
