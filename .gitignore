@@ -11,3 +11,4 @@ atom.symlink/recovery
 
 git/gitconfig.local.symlink
 Brewfile.current
+.idea/
