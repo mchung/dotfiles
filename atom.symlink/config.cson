@@ -33,6 +33,10 @@
     panelDisplayMode: "closed"
   "linter-eslint":
     useGlobalEslint: true
+    fontSize: 13
+    invisibles: {}
+    showIndentGuide: true
+    softWrapAtPreferredLineLength: true
   "release-notes":
     viewedVersion: "0.89.0"
   "spell-check":
