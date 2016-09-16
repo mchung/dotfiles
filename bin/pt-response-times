@@ -1,0 +1,2 @@
+# Aug 26 12:07:52 dyno-production heroku/router: at=info method=GET path="/path/1234" host=abc.def.com request_id=11111111-1111-1111-2222-111111111111 fwd="255.255.255.255" dyno=web.42 connect=0ms service=150ms status=200 bytes=65536
+awk '{split($14,srv,"="); print srv[2] " " $3 " " $11 " " $8}' | sort -n -k1
