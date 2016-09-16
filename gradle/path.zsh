@@ -1,2 +1,4 @@
-export GRADLE_HOME=~/sdk/gradle-2.0
-export PATH=$PATH:$GRADLE_HOME/bin
+if [ -d "$HOME/Tools/gradle" ]; then
+  export GRADLE_HOME="$HOME/Tools/gradle"
+  export PATH=$PATH:$GRADLE_HOME/bin
+fi
