@@ -7,6 +7,7 @@
         br = branch
         co = checkout
         st = status
+        sb = status -sb
         di = diff
         ci = commit
         dc = diff --cached # show staged changes
