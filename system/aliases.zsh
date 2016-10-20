@@ -7,10 +7,11 @@ then
   alias l="gls -lAh --color"
   alias ll="gls -l --color"
   alias la='gls -A --color'
-  # alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E 'Host\: .*|GET \/.*'"
+  alias dir='ls'
+  alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E 'Host\: .*|GET \/.*'"
   # alias postdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E 'Host\: .*|POST \/.*'"
-  # alias lh="ls -lha"
-  # alias lk="ls -latr"
+  alias lh="ls -lha"
+  alias lk="ls -latr"
 fi
 
 # alias win_host="sudo ghost list | awk '{gsub(/127.0.0.1/,"192.168.1.203")} 1' | awk '{print $3 "\t" $1}'"
