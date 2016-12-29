@@ -45,3 +45,22 @@
         default = simple
 [branch]
 	autosetupmerge = always
+
+# kdiff3
+
+[difftool "kdiff3"]
+    path = /usr/local/bin/kdiff3
+    trustExitCode = false
+[difftool]
+    prompt = false
+[diff]
+    tool = kdiff3
+[mergetool "kdiff3"]
+    path = /usr/local/bin/kdiff3
+    trustExitCode = false
+[mergetool]
+    keepBackup = false
+[merge]
+    tool = kdiff3
+
+# /kdiff3
