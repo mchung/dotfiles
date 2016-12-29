@@ -1,0 +1,30 @@
+#!/bin/sh
+set -x
+
+app=$1
+
+db_url=`heroku config:get DATABASE_URL -a ${app}`
+
+export PGDATABASE=`sed -E 's|^.*/([a-zA-Z0-9]*)$|\1|' <<EOF
+$db_url
+EOF`
+export PGHOST=`sed -E 's|^.*@([-.a-zA-Z0-9]*):.*$|\1|' <<EOF
+$db_url
+EOF`
+export PGPORT=`sed -E 's|^.*:([-.a-zA-Z0-9]*)/.*$|\1|' <<EOF
+$db_url
+EOF`
+export PGUSER=`sed -E 's|^.*//([a-zA-Z0-9]*):.*$|\1|' <<EOF
+$db_url
+EOF`
+export PGPASSWORD=`sed -E 's|^.*:([a-zA-Z0-9]*)@.*$|\1|' <<EOF
+$db_url
+EOF`
+
+# echo $PGDATABASE
+# echo $PGHOST
+# echo $PGPORT
+# echo $PGUSER
+# echo $PGPASSWORD
+
+pg_dump --schema-only --no-owner --no-privileges
