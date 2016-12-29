@@ -24,6 +24,8 @@ alias apinfo="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/
 # alias chrome='cd /tmp && /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-server="127.0.0.1:9050" --disable-java --enable-strict-site-isolation --disable-geolocation --incognito --user-data-dir=/tmp/chrome --utility --utility-allowed-dir=/tmp/chrome --dns-prefetch-disable --disable-sync --bwsi --disable-full-history-sync --no-first-run check.torproject.org && rm -rf chrome && cd -'
 # alias chrome='cd /tmp && /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-server="127.0.0.1:9150" --disable-java --enable-strict-site-isolation --disable-geolocation --incognito --user-data-dir=/tmp/chrome --utility --utility-allowed-dir=/tmp/chrome --dns-prefetch-disable --disable-sync --bwsi --disable-full-history-sync --no-first-run check.torproject.org && rm -rf chrome && cd -'
 
+alias fix360="exiftool -xmp:CroppedAreaLeftPixels=0 -xmp:CroppedAreaTopPixels=0 -xmp:CroppedAreaImageWidthPixels=7744 -xmp:CroppedAreaImageHeightPixels=3872 -xmp:FullPanoWidthPixels=7744 -xmp:FullPanoHeightPixels=3872 -xmp:UsePanoramaViewer=true -xmp:ProjectionType=equirectangular $1"
+
 # HOSTS=("news.ycombinator.com" "slashdot.org" "www.reddit.com" "reddit.com" "twitter.com" "tcbreview.com" "techcrunch.com" "www.facebook.com" "facebook.com" "haikuist.com" "plus.google.com")
 # function focus() {
 #    for name in "${HOSTS[@]}"
