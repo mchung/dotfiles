@@ -32,3 +32,9 @@ function up() {
   bundle exec rake db:migrate
   bundle exec rake dev:frontend
 }
+
+# $ heroku_console heroku-slug-name
+function heroku_console() {
+  echo "Connecting to $@ on FOLLOWER_DATABASE_URL"
+  heroku run DATABASE_URL=`heroku config:get FOLLOWER_DATABASE_URL -a $@` rails console -a $@
+}
