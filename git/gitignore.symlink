@@ -3,3 +3,6 @@
 *.swp
 .idea/
 .byebug_history
+scratch.rb
+.rbenv-gemsets
+*.jsx
