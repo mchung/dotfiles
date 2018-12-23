@@ -1,7 +1,13 @@
 "*":
+  _dartlang:
+    _errorsInitialized: true
+    _firstRun: true
+    _version: "0.6.45"
   "atom-beautify":
     _analyticsUserId: "XXX"
     analytics: false
+  "autocomplete-plus":
+    autoActivationDelay: 500
   core:
     disabledPackages: [
       "background-tips"
@@ -23,6 +29,8 @@
       "unity-ui"
       "glacier-syntax"
     ]
+  dartlang:
+    sdkLocation: "/usr/local/opt/dart/libexec"
   editor:
     fontFamily: "Menlo"
     fontSize: 15
@@ -31,12 +39,13 @@
     softWrapAtPreferredLineLength: true
   "go-plus":
     panelDisplayMode: "closed"
+  linter: {}
   "linter-eslint":
-    useGlobalEslint: true
     fontSize: 13
     invisibles: {}
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
+    useGlobalEslint: true
   "release-notes":
     viewedVersion: "0.89.0"
   "spell-check":
