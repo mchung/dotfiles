@@ -40,11 +40,7 @@ unpushed () {
 need_push () {
   if [[ $(unpushed) == "" ]]
   then
-    echo " "
-  else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
-  fi
-}
+    number=$($git cherry -v origin/$(git symbolic-ref --short HEAD) 2>/dev/null | wc -l | bc)
 
 ruby_version() {
   if (( $+commands[rbenv] ))
@@ -73,7 +69,10 @@ directory_name() {
 }
 
 battery_status() {
-  $ZSH/bin/battery-status
+  if [[ $(sysctl -n hw.model) == *"Book"* ]]
+  then
+    $ZSH/bin/battery-status
+  fi
 }
 
 export PROMPT=$'\n$(battery_status) $(rb_prompt)in $(directory_name) $(git_dirty)\n› '
