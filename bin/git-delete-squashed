@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# This is a tool that deletes all of your git branches that have been "squash-merged"
+# into master.
+#
+# This is useful if you work on a project that squashes branches into master. After
+# your branch is squashed and merged, you can use this tool to clean up the local branch.
+#
+#   https://www.npmjs.com/package/git-delete-squashed
+
+git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done
