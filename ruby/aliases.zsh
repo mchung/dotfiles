@@ -36,6 +36,7 @@ function up() {
   git up
   bundle install
   bundle exec rake db:migrate
+  yarn
 }
 
 # $ heroku_console heroku-slug-name
