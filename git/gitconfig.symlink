@@ -45,6 +45,8 @@
         default = simple
 [branch]
 	autosetupmerge = always
+[credential]
+	helper = osxkeychain
 
 # kdiff3
 
